@@ -18,6 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -29,3 +30,16 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+
+Route::get('/user', function () {
+    return "user page";
+})->middleware(['auth', 'verified','role:manager']);
+
+Route::get('/role', function () {
+    return "role page";
+})->middleware(['auth', 'verified','role:manager']);
+
+Route::get('/so', function () {
+    return "role page";
+})->middleware(['auth', 'verified','role:manager|staff']);
