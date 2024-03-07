@@ -32,14 +32,18 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 
+// Route::get('/user', function () {
+//     return view('user');
+//})->middleware(['auth', 'verified','role:manager',]);
+
 Route::get('/user', function () {
-    return "user page";
-})->middleware(['auth', 'verified','role:manager']);
+    return view('user');
+})->middleware(['auth', 'verified','role_or_permission:manager|create user',]);
 
 Route::get('/role', function () {
-    return "role page";
+    return view('role');
 })->middleware(['auth', 'verified','role:manager']);
 
 Route::get('/so', function () {
-    return "role page";
+    return view('so');
 })->middleware(['auth', 'verified','role:manager|staff']);
